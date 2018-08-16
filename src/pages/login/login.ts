@@ -53,6 +53,14 @@ export class LoginPage {
       () => this.navCtrl.setRoot(HomePage),
       error => console.log(error.message)
     );
-  }
+	}
+	
+	loginwithfb(){
+		this.auth.signInWithFacebook()
+		.then(
+			() => this.navCtrl.setRoot(HomePage),
+      error => console.log(error.message)
+		)
+	}
 
 }

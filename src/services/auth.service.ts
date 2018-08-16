@@ -40,6 +40,11 @@ export class AuthService {
 		return this.oauthSignIn(new firebase.auth.GoogleAuthProvider());
 	}
 
+	signInWithFacebook() {
+		console.log('Sign in with facebook');
+		return this.oauthSignIn(new firebase.auth.FacebookAuthProvider());
+	}
+
 	private oauthSignIn(provider: AuthProvider) {
 		if (!(<any>window).cordova) {
 			return this.afAuth.auth.signInWithPopup(provider);
@@ -52,6 +57,12 @@ export class AuthService {
 					let token = result.credential.accessToken;
 					// The signed-in user info.
 					let user = result.user;
+
+					let userName = result.user.displayName;
+					let email = result.user.email;
+					let phone = result.user.phoneNumber;
+					let photoUrl = result.user.photoUrl;
+
 					console.log(token, user);
 				}).catch(function(error) {
 					// Handle Errors here.
